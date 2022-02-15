@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    hostname: sql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PWD}
+      MYSQL_DATABASE: ${DATABASE}
+      MYSQL_USER: ${USER_NAME}
+      MYSQL_PASSWORD: ${USER_PWD}
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./database:/var/lib/mysql
+
+volumes:
+  database:
