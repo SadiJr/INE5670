@@ -1,8 +1,8 @@
-from utils import basic_db_operations
+from utils import crud
 
 PROPERTIES = "properties"
 
-connector = basic_db_operations.BasicQueries()
+connector = crud.Crud()
 
 
 def list_property(id):
@@ -13,13 +13,14 @@ def list_all():
     return connector.list_all(PROPERTIES)
 
 
-def add_property(body):
+def add_property(data):
     pass
 
 
-def edit_property(body):
-    pass
+def edit_property(data):
+    # TODO
+    return "Not implemented yet", False
 
 
 def remove_property(id):
-    pass
+    return connector.remove_by_id(id)

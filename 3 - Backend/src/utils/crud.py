@@ -7,7 +7,7 @@ import pymysql
 DATABASE_NAME = 'sensors'
 
 
-class BasicQueries(object):
+class Crud(object):
     def __init__(self):
         load_dotenv()
 

@@ -1,4 +1,4 @@
-from utils import basic_db_operations
+from utils import crud
 from utils import user_utils
 from model.users import User
 from datetime import datetime
@@ -9,7 +9,7 @@ import re
 DATABASE_NAME = 'sensors'
 USERS = "users"
 KEYS = ['cpf', 'fullname', 'email', 'phone']
-connector = basic_db_operations.BasicQueries()
+connector = crud.Crud()
 
 
 def list_user(id):
@@ -63,6 +63,7 @@ def validate_data(cpf, email, phone):
     return None
 
 def edit_user(data: dict) -> {str, bool}:
+    # TODO
     return "Not implemented yet", False
 
 

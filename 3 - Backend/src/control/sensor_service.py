@@ -1,8 +1,8 @@
-from utils import basic_db_operations
+from utils import crud
 
 SENSORS = "sensors"
 
-connector = basic_db_operations.BasicQueries()
+connector = crud.Crud()
 
 
 def list_sensor(id):
@@ -18,8 +18,9 @@ def add_sensor(body):
 
 
 def edit_sensor(body):
-    pass
+    # TODO
+    return "Not implemented yet", False
 
 
 def remove_sensor(id):
-    pass
+    return connector.remove_by_id(SENSORS, id)

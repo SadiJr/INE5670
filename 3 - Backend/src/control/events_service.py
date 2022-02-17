@@ -1,11 +1,11 @@
-from utils import basic_db_operations
+from utils import crud
 
 EVENTS = "events"
 
-connector = basic_db_operations.BasicQueries()
+connector = crud.Crud()
 
 
-def sensor_event(body):
+def sensor_event(data):
     pass
 
 
