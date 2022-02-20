@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from utils import crud
 from utils import event_utils
 from model.events import Events

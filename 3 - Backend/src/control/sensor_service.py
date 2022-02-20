@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from utils import crud
 from model.sensors import Sensors
 import jsons
@@ -64,6 +66,6 @@ def insert_sensor(values):
         connector.get_cursor().execute(sql, values)
         connector.get_cursor().connection.commit()
         return "Sensor added with success", True
-    except IntegrityError as e:
+    except Exception as e:
         print(f"Error in MySQL insert: {e}")
         return f"Error in insert sensor due to {e}!", False

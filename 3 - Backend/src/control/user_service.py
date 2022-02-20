@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from utils import crud
 from utils import user_utils
 from model.users import User
@@ -52,6 +54,7 @@ def add_user(data: dict) -> {str, bool}:
     user = User(datetime.now(), cpf, name, email, phone)
     return insert_user(user.get_sql_values())
 
+
 def validate_data(cpf, email, phone):
     if not user_utils.validate_cpf(cpf):
         return f"The CPF {cpf} isn't valid! Try again with an valid CPF.", False
@@ -63,6 +66,7 @@ def validate_data(cpf, email, phone):
         return f"The phone {phone} isn't valid! Try again with a valid phone number.", False
     return None
 
+
 def edit_user(data: dict) -> {str, bool}:
     # TODO
     return "Not implemented yet", False
@@ -70,6 +74,7 @@ def edit_user(data: dict) -> {str, bool}:
 
 def remove_user(id: int) -> bool:
     return connector.remove_by_id(USERS, id)
+
 
 def insert_user(values):
     try:

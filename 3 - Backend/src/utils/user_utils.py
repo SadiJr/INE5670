@@ -1,4 +1,7 @@
+#!/usr/bin/env python
+
 import re
+
 
 def validate_cpf(cpf: str) -> bool:
     numbers = [int(digit) for digit in cpf if digit.isdigit()]
@@ -18,8 +21,10 @@ def validate_cpf(cpf: str) -> bool:
 
     return True
 
+
 def validate_email(email: str) -> bool:
     return re.search(r'^[\w]+@[\w]+\.[\w]{2,4}', email) is not None
+
 
 def validate_phone(phone: str) -> bool:
     return re.search(r'(^[0-9]{2})?(\s|-)?(9?[0-9]{4})-?([0-9]{4}\$)', phone) is None

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from utils import crud
 from model.properties import Properties
 from datetime import datetime
