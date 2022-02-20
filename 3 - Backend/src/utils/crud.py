@@ -23,7 +23,7 @@ class Crud(object):
             return f"Object with id {id} don't exists!", False
         elif result > 1:
             return f"Found more than one object with id {id}. Please contact the IT support!", False
-        return self.cursor.fetchall(), True
+        return self.cursor.fetchall()[0], True
 
     def list_all(self, table):
         self.cursor.execute(f"USE {DATABASE_NAME};")

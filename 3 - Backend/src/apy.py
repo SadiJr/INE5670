@@ -39,15 +39,29 @@ def list_all_properties():
 
 @app.route('/property/add', methods=['POST'])
 def add_property():
-    pass
+    data = request.json
+    msg, success = property_service.add_property(data)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/property/edit', methods=['POST'])
 def edit_property():
-    pass
+    data = request.json
+    msg, success = property_service.edit_property(data)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/property/remove/<int:id>', methods=['GET'])
 def remove_property(id):
-    pass
+    msg, success = property_service.remove_property(id)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/sensor/list/<int:id>', methods=['GET'])
 def list_sensor(id):
@@ -56,6 +70,7 @@ def list_sensor(id):
     resp.status_code = 200 if success else 400
     return resp
 
+
 @app.route('/sensor/list/all', methods=['GET'])
 def list_all_sensors():
     msg, success = sensor_service.list_all()
@@ -63,17 +78,33 @@ def list_all_sensors():
     resp.status_code = 200 if success else 400
     return resp
 
+
 @app.route('/sensor/event', methods=['POST'])
 def sensor_event():
-    pass
+    data = request.json
+    msg, success = events_service.sensor_event(data)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/sensor/add', methods=['POST'])
 def add_sensor():
-    pass
+    data = request.json
+    msg, success = sensor_service.add_sensor(data)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/sensor/edit', methods=['POST'])
 def edit_sensor():
-    pass
+    data = request.json
+    msg, success = sensor_service.edit_sensor(data)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
+
 
 @app.route('/event/list/<int:id>', methods=['GET'])
 def list_event(id):
@@ -81,6 +112,7 @@ def list_event(id):
     resp = jsonify({'message': msg})
     resp.status_code = 200 if success else 400
     return resp
+
 
 @app.route('/event/list/all', methods=['GET'])
 def list_all_events():
@@ -92,7 +124,10 @@ def list_all_events():
 
 @app.route('/sensor/remove/<int:id>', methods=['GET'])
 def remove_sensor(id):
-    pass
+    msg, success = sensor_service.remove_sensor(id)
+    resp = jsonify({'message': msg})
+    resp.status_code = 200 if success else 400
+    return resp
 
 
 @app.route('/user/list/<int:id>', methods=['GET'])
@@ -102,12 +137,14 @@ def list_user(id):
     resp.status_code = 200 if success else 400
     return resp
 
+
 @app.route('/user/list/all', methods=['GET'])
 def list_all_users():
     msg, success = user_service.list_all()
     resp = jsonify({'message': msg})
     resp.status_code = 200 if success else 400
     return resp
+
 
 @app.route('/user/add', methods=['POST'])
 def add_user():
@@ -125,6 +162,7 @@ def edit_user():
     resp = jsonify({'message': msg})
     resp.status_code = 200 if success else 400
     return resp
+
 
 @app.route('/user/remove/<int:id>', methods=['GET'])
 def remove_user(id):

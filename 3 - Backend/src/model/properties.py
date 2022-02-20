@@ -3,7 +3,7 @@
 
 class Properties(object):
     def __init__(self, created_at, cep, street, neighborhood, city, state, country, number,
-                 complement, user, removed, id=None):
+                 complement, user, id=None):
         self.id = id
         self.created_at = created_at
         self.cep = cep
@@ -15,12 +15,11 @@ class Properties(object):
         self.number = number
         self.complement = complement
         self.user = user
-        self.removed = removed
 
     def get_sql_values(self):
         return [self.created_at, self.cep, self.street, self.neighborhood, self.city, self.state, self.country,
-                self.number, self.complement, self.user, self.removed]
+                self.number, self.complement, self.user]
 
     def get_values(self):
         return [self.id, self.created_at, self.cep, self.street, self.neighborhood, self.city, self.state,
-                self.country, self.number, self.complement, self.user, self.removed]
+                self.country, self.number, self.complement, self.user]

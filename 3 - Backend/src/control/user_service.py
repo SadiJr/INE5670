@@ -16,18 +16,19 @@ def list_user(id):
     result, success = connector.list_by_id(USERS, id)
     if not success:
         return result, success
-    result = result[0]
-    result = jsons.dump(User(result[1], result[2], result[3], result[4], result[5], result[6], id=result[0]))
+    result = jsons.dump(User(result[1], result[2], result[3], result[4], result[5], id=result[0]))
     return result, success
+
 
 def list_all():
     users = []
     result, success = connector.list_all(USERS)
     if success:
         for u in result:
-            users.append(jsons.dump(User(u[1], u[2], u[3], u[4], u[5], u[6], id=u[0])))
+            users.append(jsons.dump(User(u[1], u[2], u[3], u[4], u[5], id=u[0])))
         return users, True
     return result, success
+
 
 def add_user(data: dict) -> {str, bool}:
     data = dict((k.lower(), v) for k, v in data.items())
@@ -48,7 +49,7 @@ def add_user(data: dict) -> {str, bool}:
     phone = int(re.sub("[^0-9]", "", phone))
     name = data.get('fullname')
 
-    user = User(datetime.now(), cpf, name, email, phone, None)
+    user = User(datetime.now(), cpf, name, email, phone)
     return insert_user(user.get_sql_values())
 
 def validate_data(cpf, email, phone):
@@ -72,7 +73,7 @@ def remove_user(id: int) -> bool:
 
 def insert_user(values):
     try:
-        sql = f"INSERT INTO {USERS} (created_at, cpf, fullname, email, phone, removed) VALUES (%s, %s, %s ,%s ,%s ,%s);"
+        sql = f"INSERT INTO {USERS} (created_at, cpf, fullname, email, phone) VALUES (%s, %s, %s, %s, %s);"
         connector.get_cursor().execute(f"USE {DATABASE_NAME};")
         connector.get_cursor().execute(sql, values)
         connector.get_cursor().connection.commit()

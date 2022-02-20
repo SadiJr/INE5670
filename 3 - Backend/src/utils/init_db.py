@@ -47,7 +47,6 @@ def create_users_table(cursor):
       `fullname` text NOT NULL,
       `email` text NOT NULL,
       `phone` bigint(20) unsigned,
-      `removed` datetime DEFAULT NULL,
       PRIMARY KEY (`id`),
       UNIQUE KEY `users_cpf` (`cpf`),
       KEY `users_id_IDX` (`id`) USING BTREE,
@@ -65,7 +64,6 @@ def create_sensors_table(cursor):
       `created_at` datetime NOT NULL,
       `property` int(11) NOT NULL,
       `description` text DEFAULT NULL,
-      `removed` datetime DEFAULT NULL,
       PRIMARY KEY (`id`),
       KEY `sensors_id_IDX` (`id`) USING BTREE,
       CONSTRAINT `property_FK` FOREIGN KEY (`property`) REFERENCES `properties` (`id`)
@@ -88,7 +86,6 @@ def create_properties_table(cursor):
           `number` int(11) NOT NULL,
           `complement` text DEFAULT NULL,
           `user` int(11) NOT NULL,
-          `removed` datetime DEFAULT NULL,
           PRIMARY KEY (`id`),
           KEY `sensors_id_IDX` (`id`) USING BTREE,
           CONSTRAINT `user_FK` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
@@ -98,13 +95,13 @@ def create_properties_table(cursor):
 
 
 def create_events_table(cursor):
+
     sql = f"""
             CREATE TABLE `{EVENTS}` (
               `id` int(11) NOT NULL AUTO_INCREMENT,
               `created_at` datetime NOT NULL,
-              `event` int(11) NOT NULL,
+              `event` int(11) NOT NULL COMMENT '1 - Sensor Up\n2 - Sensor Down\n3 - Sensor Shutdown\n4 - Intruder\n5 - User Notified',
               `sensor` int(11) NOT NULL,
-              `removed` datetime DEFAULT NULL,
               PRIMARY KEY (`id`),
               KEY `event_id_IDX` (`id`) USING BTREE,
               CONSTRAINT `sensor_FK` FOREIGN KEY (`sensor`) REFERENCES `sensors` (`id`)

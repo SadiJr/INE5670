@@ -10,6 +10,14 @@ class Event(Enum):
     INTRUDER = 4
     USER_NOTIFIED = 5
 
+    @classmethod
+    def has_value(cls, value):
+        return value in cls._value2member_map_
+
+    @classmethod
+    def has_key(cls, key):
+        return key in cls._member_names_
+
 
 class Events(object):
     def __init__(self, created_at, event: Event, sensor, id=None):
@@ -23,3 +31,6 @@ class Events(object):
 
     def get_values(self):
         return [self.id, self.created_at, self.event, self.sensor]
+
+    def is_alert_event(self):
+        return self.event is Event.INTRUDER
