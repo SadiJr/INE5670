@@ -27,3 +27,6 @@ __pycache__/
 *.mtc1
 *.out
 *.synctex.gz
+
+# Python virtual env
+env/
